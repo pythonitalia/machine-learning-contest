@@ -113,3 +113,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = root('media')
 
 AUTH_USER_MODEL = 'users.User'
+
+GRAPHENE = {
+    'SCHEMA': 'api.schema.schema'
+}

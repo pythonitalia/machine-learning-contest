@@ -9,9 +9,12 @@ name = "pypi"
 
 django = "*"
 django-environ = "*"
+graphene = "*"
+graphene-django = "*"
 
 
 [dev-packages]
 
 pytest = "*"
 pytest-django = "*"
+"flake8" = "*"
