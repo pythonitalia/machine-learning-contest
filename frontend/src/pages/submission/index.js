@@ -31,7 +31,7 @@ class Submission extends PureComponent {
 
     return (
       <div>
-        <Typography type="display1" style={{ marginBottom: 40 }}>
+        <Typography variant="display1" style={{ marginBottom: 40 }}>
           Submit
         </Typography>
 

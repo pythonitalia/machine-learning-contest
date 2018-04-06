@@ -59,7 +59,7 @@ class Header extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography type="title" color="inherit" className={classes.flex}>
+            <Typography variant="title" color="inherit" className={classes.flex}>
               <Link to="/">PyCon Nove</Link>
             </Typography>
 
