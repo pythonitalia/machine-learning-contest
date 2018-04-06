@@ -1,5 +1,7 @@
 import graphene
 
+from users.api.schema import UserMutations
+
 
 class Query(graphene.ObjectType):
     hello = graphene.String()
@@ -8,4 +10,11 @@ class Query(graphene.ObjectType):
         return 'world'
 
 
-schema = graphene.Schema(query=Query)
+class Mutations(
+    UserMutations,
+    graphene.ObjectType
+):
+    pass
+
+
+schema = graphene.Schema(query=Query, mutation=Mutations)
