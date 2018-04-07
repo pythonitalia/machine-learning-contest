@@ -3,6 +3,7 @@ import { withStyles } from "material-ui/styles";
 import Button from "material-ui/Button";
 import { LinearProgress } from "material-ui/Progress";
 import TextField from "material-ui/TextField";
+import { Redirect } from "react-router";
 import idx from "idx";
 
 import gql from "graphql-tag";
@@ -42,8 +43,12 @@ class LoginForm extends PureComponent {
 
     return (
       <Mutation mutation={LOGIN}>
-        {(login, { data, loading }) => {
+        {(login, { data, loading, called }) => {
           const errors = idx(data, _ => _.login.errors.nonFieldErrors);
+
+          if (called && data && data.login.ok) {
+            return <Redirect to="/profile" />;
+          }
 
           return (
             <form
