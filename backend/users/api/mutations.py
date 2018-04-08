@@ -2,6 +2,8 @@ import graphene
 
 from django.contrib.auth import login, logout, authenticate
 
+from ..forms import RegisterForm
+
 
 class LoginErrors(graphene.ObjectType):
     non_field_errors = graphene.List(graphene.NonNull(graphene.String))
@@ -79,4 +81,11 @@ class RegisterMutation(graphene.Mutation):
 
     @classmethod
     def mutate(cls, root, info, input):
-        return cls(ok=True, errors=RegistrationErrors())
+        form = RegisterForm(data=input)
+
+        if form.is_valid():
+            form.save()
+
+            return cls(ok=True, errors=RegistrationErrors())
+
+        return cls(ok=False, errors=RegistrationErrors(**form.errors))

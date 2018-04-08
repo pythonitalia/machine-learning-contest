@@ -2,9 +2,11 @@ import pytest
 
 # from django.contrib.sessions.models import Session
 
+from users.models import User
+
 
 @pytest.mark.django_db
-def test_registration_works(graphql_client, admin_user):
+def test_registration_works(graphql_client):
     resp = graphql_client.query('''
         mutation Register($input: RegistrationInput!) {
             register(input: $input) {
@@ -33,6 +35,12 @@ def test_registration_works(graphql_client, admin_user):
 
     assert all([value is None for key, value in data['errors'].items()])
     assert data['ok']
+
+    assert User.objects.count() == 1
+
+    user = User.objects.first()
+
+    assert user.full_name == 'Patrick Arminio'
 
     # cookies = graphql_client.client.cookies
 
