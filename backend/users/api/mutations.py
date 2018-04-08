@@ -84,7 +84,9 @@ class RegisterMutation(graphene.Mutation):
         form = RegisterForm(data=input)
 
         if form.is_valid():
-            form.save()
+            user = form.save()
+
+            login(info.context, user)
 
             return cls(ok=True, errors=RegistrationErrors())
 

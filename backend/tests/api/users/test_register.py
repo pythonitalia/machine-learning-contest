@@ -1,8 +1,8 @@
 import pytest
 
-# from django.contrib.sessions.models import Session
-
 from users.models import User
+
+from django.contrib.sessions.models import Session
 
 
 @pytest.mark.django_db
@@ -42,11 +42,11 @@ def test_registration_works(graphql_client):
 
     assert user.full_name == 'Patrick Arminio'
 
-    # cookies = graphql_client.client.cookies
+    cookies = graphql_client.client.cookies
 
-    # assert 'sessionid' in cookies
+    assert 'sessionid' in cookies
 
-    # session = Session.objects.get(session_key=cookies['sessionid'].value)
-    # uid = session.get_decoded().get('_auth_user_id')
+    session = Session.objects.get(session_key=cookies['sessionid'].value)
+    uid = session.get_decoded().get('_auth_user_id')
 
-    # assert uid == str(admin_user.id)
+    assert uid == str(user.id)
