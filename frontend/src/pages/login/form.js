@@ -10,6 +10,8 @@ import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
 import { FormHelperText } from "material-ui";
 
+import { setIsAuthenticated } from "../../utils/authentication";
+
 const LOGIN = gql`
   mutation LoginMutation($email: String!, $password: String!) {
     login(username: $email, password: $password) {
@@ -42,7 +44,14 @@ class LoginForm extends PureComponent {
     const { classes } = this.props;
 
     return (
-      <Mutation mutation={LOGIN}>
+      <Mutation
+        mutation={LOGIN}
+        onCompleted={({ login }) => {
+          if (login.ok) {
+            setIsAuthenticated(true).catch(e => console.warn(e));
+          }
+        }}
+      >
         {(login, { data, loading, called }) => {
           const errors = idx(data, _ => _.login.errors.nonFieldErrors);
 
@@ -57,8 +66,6 @@ class LoginForm extends PureComponent {
               autoComplete="off"
               onSubmit={e => {
                 e.preventDefault();
-
-                console.log("sending");
 
                 login({
                   variables: {
