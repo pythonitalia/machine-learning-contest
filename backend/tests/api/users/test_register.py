@@ -11,6 +11,9 @@ def test_registration_works(graphql_client):
         mutation Register($input: RegistrationInput!) {
             register(input: $input) {
                 ok
+                user {
+                    fullName
+                }
                 errors {
                     fullName
                     teamName
@@ -35,6 +38,7 @@ def test_registration_works(graphql_client):
 
     assert all([value is None for key, value in data['errors'].items()])
     assert data['ok']
+    assert data['user']['fullName'] == 'Patrick Arminio'
 
     assert User.objects.count() == 1
 

@@ -3,6 +3,7 @@ import graphene
 from django.contrib.auth import login, logout, authenticate
 
 from ..forms import RegisterForm
+from .types import UserType
 
 
 class LoginErrors(graphene.ObjectType):
@@ -72,8 +73,8 @@ class RegistrationErrors(graphene.ObjectType):
 
 
 class RegisterMutation(graphene.Mutation):
-    # TODO: return user info
     ok = graphene.Boolean()
+    user = graphene.Field(UserType)
     errors = graphene.Field(RegistrationErrors, required=True)
 
     class Arguments:
@@ -88,6 +89,14 @@ class RegisterMutation(graphene.Mutation):
 
             login(info.context, user)
 
-            return cls(ok=True, errors=RegistrationErrors())
+            return cls(
+                ok=True,
+                user=user,
+                errors=RegistrationErrors()
+            )
 
-        return cls(ok=False, errors=RegistrationErrors(**form.errors))
+        return cls(
+            ok=False,
+            user=None,
+            errors=RegistrationErrors(**form.errors)
+        )
