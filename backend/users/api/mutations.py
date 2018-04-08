@@ -2,6 +2,9 @@ import graphene
 
 from django.contrib.auth import login, logout, authenticate
 
+from ..forms import RegisterForm
+from .types import UserType
+
 
 class LoginErrors(graphene.ObjectType):
     non_field_errors = graphene.List(graphene.NonNull(graphene.String))
@@ -52,3 +55,48 @@ class LogoutMutation(graphene.Mutation):
         logout(info.context)
 
         return cls(ok=True)
+
+
+class RegistrationInput(graphene.InputObjectType):
+    full_name = graphene.String(required=True)
+    team_name = graphene.String()
+    email = graphene.String(required=True)
+    password = graphene.String(required=True)
+
+
+class RegistrationErrors(graphene.ObjectType):
+    full_name = graphene.List(graphene.NonNull(graphene.String))
+    team_name = graphene.List(graphene.NonNull(graphene.String))
+    email = graphene.List(graphene.NonNull(graphene.String))
+    password = graphene.List(graphene.NonNull(graphene.String))
+    non_field_errors = graphene.List(graphene.NonNull(graphene.String))
+
+
+class RegisterMutation(graphene.Mutation):
+    ok = graphene.Boolean()
+    user = graphene.Field(UserType)
+    errors = graphene.Field(RegistrationErrors, required=True)
+
+    class Arguments:
+        input = RegistrationInput(required=True)
+
+    @classmethod
+    def mutate(cls, root, info, input):
+        form = RegisterForm(data=input)
+
+        if form.is_valid():
+            user = form.save()
+
+            login(info.context, user)
+
+            return cls(
+                ok=True,
+                user=user,
+                errors=RegistrationErrors()
+            )
+
+        return cls(
+            ok=False,
+            user=None,
+            errors=RegistrationErrors(**form.errors)
+        )

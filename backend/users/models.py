@@ -9,9 +9,9 @@ from django.contrib.auth.base_user import AbstractBaseUser
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(
-        _('username'),
-        max_length=100,
+    full_name = models.CharField(
+        _('full name'),
+        max_length=200,
         null=True,
         blank=True,
     )
