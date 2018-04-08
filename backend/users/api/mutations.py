@@ -52,3 +52,31 @@ class LogoutMutation(graphene.Mutation):
         logout(info.context)
 
         return cls(ok=True)
+
+
+class RegistrationInput(graphene.InputObjectType):
+    full_name = graphene.String(required=True)
+    team_name = graphene.String()
+    email = graphene.String(required=True)
+    password = graphene.String(required=True)
+
+
+class RegistrationErrors(graphene.ObjectType):
+    full_name = graphene.List(graphene.NonNull(graphene.String))
+    team_name = graphene.List(graphene.NonNull(graphene.String))
+    email = graphene.List(graphene.NonNull(graphene.String))
+    password = graphene.List(graphene.NonNull(graphene.String))
+    non_field_errors = graphene.List(graphene.NonNull(graphene.String))
+
+
+class RegisterMutation(graphene.Mutation):
+    # TODO: return user info
+    ok = graphene.Boolean()
+    errors = graphene.Field(RegistrationErrors, required=True)
+
+    class Arguments:
+        input = RegistrationInput(required=True)
+
+    @classmethod
+    def mutate(cls, root, info, input):
+        return cls(ok=True, errors=RegistrationErrors())
