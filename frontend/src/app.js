@@ -17,6 +17,7 @@ import LeaderboardPage from "./pages/leaderboard";
 import LoginPage from "./pages/login";
 
 import { client } from "./client";
+import { PrivateRoute } from "./components/private-route";
 
 const App = () => (
   <ApolloProvider client={client}>
@@ -35,6 +36,11 @@ const App = () => (
               <Route exact path="/login" component={LoginPage} />
               <Route exact path="/submission" component={SubmissionPage} />
               <Route exact path="/leaderboard" component={LeaderboardPage} />
+              <PrivateRoute
+                exact
+                path="/profile"
+                component={() => <h1>Profile</h1>}
+              />
               <Route component={() => <h1>Not Found</h1>} />
             </Switch>
           </Grid>
