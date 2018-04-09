@@ -1,6 +1,6 @@
 import pytest
 
-from users.models import User
+from users.models import User, Team
 
 from django.contrib.sessions.models import Session
 
@@ -160,3 +160,89 @@ def test_registration_unique_email(graphql_client):
     assert data['errors']['email'] == [
         'User with this Email address already exists.'
     ]
+
+
+@pytest.mark.django_db
+def test_registration_creates_team(graphql_client):
+    resp = graphql_client.query('''
+        mutation Register($input: RegistrationInput!) {
+            register(input: $input) {
+                ok
+                user {
+                    fullName
+                    team {
+                        name
+                    }
+                }
+                errors {
+                    fullName
+                    teamName
+                    email
+                    password
+                    nonFieldErrors
+                }
+            }
+        }
+    ''', variables={
+        'input': {
+            'fullName': 'Patrick Arminio',
+            'teamName': 'ORO 🏆',
+            'email': 'patrick.arminio@gmail.com',
+            'password': 'do you even 🏋🏼‍',
+        }
+    })
+
+    assert 'errors' not in resp
+
+    data = resp['data']['register']
+
+    assert all([value is None for key, value in data['errors'].items()])
+    assert data['ok']
+    assert data['user']['team']['name'] == 'ORO 🏆'
+
+    assert Team.objects.count() == 1
+
+    team = Team.objects.first()
+
+    assert team.name == 'ORO 🏆'
+
+
+@pytest.mark.django_db
+def test_registration_without_team(graphql_client):
+    resp = graphql_client.query('''
+        mutation Register($input: RegistrationInput!) {
+            register(input: $input) {
+                ok
+                user {
+                    fullName
+                    team {
+                        name
+                    }
+                }
+                errors {
+                    fullName
+                    teamName
+                    email
+                    password
+                    nonFieldErrors
+                }
+            }
+        }
+    ''', variables={
+        'input': {
+            'fullName': 'Patrick Arminio',
+            'teamName': '',
+            'email': 'patrick.arminio@gmail.com',
+            'password': 'do you even 🏋🏼‍',
+        }
+    })
+
+    assert 'errors' not in resp
+
+    data = resp['data']['register']
+
+    assert all([value is None for key, value in data['errors'].items()])
+    assert data['ok']
+    assert data['user']['team'] is None
+
+    assert Team.objects.count() == 0

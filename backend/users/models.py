@@ -30,3 +30,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.email
+
+
+class Team(models.Model):
+    name = models.CharField(max_length=200)
+    owner = models.OneToOneField(
+        User,
+        on_delete=models.PROTECT,
+        related_name='team'
+    )
