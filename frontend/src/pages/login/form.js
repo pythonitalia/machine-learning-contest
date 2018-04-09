@@ -98,7 +98,7 @@ class LoginForm extends PureComponent {
                 margin="normal"
               />
 
-              <Button raised color="primary" type="submit">
+              <Button variant="raised" color="primary" type="submit">
                 Login
               </Button>
             </form>

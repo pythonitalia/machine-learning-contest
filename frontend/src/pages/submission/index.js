@@ -44,12 +44,16 @@ class Submission extends PureComponent {
             type="file"
           />
           <label htmlFor="raised-button-file">
-            <Button raised component="span" className={classes.button}>
+            <Button
+              variant="raised"
+              component="span"
+              className={classes.button}
+            >
               Upload solutions
             </Button>
           </label>
 
-          <Button raised color="primary" className={classes.button}>
+          <Button variant="raised" color="primary" className={classes.button}>
             Send
           </Button>
         </form>

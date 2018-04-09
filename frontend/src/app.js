@@ -1,5 +1,5 @@
 import React from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
 import Grid from "material-ui/Grid";
 
 import { ApolloProvider } from "react-apollo";
@@ -19,10 +19,12 @@ import LoginPage from "./pages/login";
 import { client } from "./client";
 import { PrivateRoute } from "./components/private-route";
 
+const theme = createMuiTheme();
+
 const App = () => (
   <ApolloProvider client={client}>
     <BrowserRouter>
-      <MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>
         <Header />
         <Grid
           style={{ margin: "40px auto", width: "90%", maxWidth: "1600px" }}
