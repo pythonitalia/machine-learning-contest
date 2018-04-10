@@ -1,7 +1,7 @@
 import graphene
 
 from users.api.schema import UserMutations, UserQuery
-from challenges.api.schema import ChallengeQuery
+from challenges.api.schema import ChallengeQuery, ChallengeMutations
 
 
 class Query(
@@ -17,6 +17,7 @@ class Query(
 
 class Mutations(
     UserMutations,
+    ChallengeMutations,
     graphene.ObjectType
 ):
     pass

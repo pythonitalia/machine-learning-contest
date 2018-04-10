@@ -3,6 +3,7 @@ import graphene
 from ..models import Challenge
 
 from .types import ChallengeType
+from .mutations import UploadSubmissionMutation
 
 
 class ChallengeQuery():
@@ -10,3 +11,7 @@ class ChallengeQuery():
 
     def resolve_challenges(self, info):
         return Challenge.objects.all()
+
+
+class ChallengeMutations():
+    upload_submission = UploadSubmissionMutation.Field()
