@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'graphene_django',
 
     'users',
+    'challenges',
 ]
 
 MIDDLEWARE = [

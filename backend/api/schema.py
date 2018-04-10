@@ -1,9 +1,14 @@
 import graphene
 
 from users.api.schema import UserMutations, UserQuery
+from challenges.api.schema import ChallengeQuery
 
 
-class Query(UserQuery, graphene.ObjectType):
+class Query(
+    ChallengeQuery,
+    UserQuery,
+    graphene.ObjectType
+):
     hello = graphene.String()
 
     def resolve_hello(self, info):
