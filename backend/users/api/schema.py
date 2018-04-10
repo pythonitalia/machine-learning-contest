@@ -17,3 +17,5 @@ class UserQuery():
     def resolve_me(self, info):
         if not info.context.user.is_authenticated:
             raise ValueError('You are not logged in.')
+
+        return info.context.user
