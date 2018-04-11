@@ -1,5 +1,7 @@
 import graphene
 
+from ..forms import SubmissionForm
+
 
 class UploadSubmissionInput(graphene.InputObjectType):
     challenge = graphene.Int(required=True)
@@ -23,3 +25,20 @@ class UploadSubmissionMutation(graphene.Mutation):
     def mutate(cls, root, info, input):
         if not info.context.user.is_authenticated:
             raise ValueError('You are not logged in.')
+
+        form = SubmissionForm(data=input)
+
+        if form.is_valid():
+            submission = form.save(info.context.user)
+
+            return cls(
+                ok=True,
+                result=submission.score,
+                errors=UploadSubmissionErrors()
+            )
+
+        return cls(
+            ok=False,
+            result=None,
+            errors=UploadSubmissionErrors(**form.errors)
+        )

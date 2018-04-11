@@ -11,6 +11,7 @@ django = "*"
 django-environ = "*"
 graphene = "*"
 graphene-django = "*"
+django-model-utils = "*"
 
 
 [dev-packages]
