@@ -10,7 +10,7 @@ import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
 import { FormHelperText } from "material-ui";
 
-import { setIsAuthenticated } from "../../utils/authentication";
+import { setIsAuthenticated } from "../../authentication";
 
 const LOGIN = gql`
   mutation LoginMutation($email: String!, $password: String!) {

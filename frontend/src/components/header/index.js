@@ -17,6 +17,7 @@ import AccountCircleIcon from "material-ui-icons/AccountCircle";
 import ExitIcon from "material-ui-icons/ExitToApp";
 
 import { Link } from "react-router-dom";
+import { IsAuthenticated } from "../../authentication";
 
 const styles = {
   root: {
@@ -59,13 +60,23 @@ class Header extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" className={classes.flex}>
+            <Typography
+              variant="title"
+              color="inherit"
+              className={classes.flex}
+            >
               <Link to="/">PyCon Nove</Link>
             </Typography>
 
-            <Button component={Link} to="/login" color="inherit">
-              Login
-            </Button>
+            <IsAuthenticated>
+              {authenticated =>
+                !authenticated && (
+                  <Button component={Link} to="/login" color="inherit">
+                    Login
+                  </Button>
+                )
+              }
+            </IsAuthenticated>
           </Toolbar>
         </AppBar>
         <Drawer open={this.state.drawerOpen} onClose={this.toggleDrawer(false)}>
@@ -89,12 +100,19 @@ class Header extends React.Component {
                   </ListItemIcon>
                   <ListItemText primary="Leaderboard" />
                 </ListItem>
-                <ListItem button component={Link} to="/register">
-                  <ListItemIcon>
-                    <AccountCircleIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Register" />
-                </ListItem>
+
+                <IsAuthenticated>
+                  {authenticated =>
+                    !authenticated && (
+                      <ListItem button component={Link} to="/register">
+                        <ListItemIcon>
+                          <AccountCircleIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Register" />
+                      </ListItem>
+                    )
+                  }
+                </IsAuthenticated>
               </List>
               <Divider />
               <List>
