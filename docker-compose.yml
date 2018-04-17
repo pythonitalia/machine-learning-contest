@@ -1,0 +1,31 @@
+version: '3'
+services:
+  backend:
+    build: backend
+    depends_on:
+      - postgres
+    ports:
+      - 8000:8000
+    environment:
+      SECRET_KEY: 123
+      DEBUG: 'True'
+      DATABASE_URL: postgres://pyconmlsite@postgres/pyconml
+
+    command: "python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./backend:/app
+
+  postgres:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: pyconmlsite
+      POSTGRES_DB: pyconml
+
+  frontend:
+    build: frontend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+
