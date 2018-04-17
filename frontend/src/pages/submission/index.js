@@ -1,10 +1,11 @@
 import React, { PureComponent } from "react";
 import { withStyles } from "material-ui/styles";
 import Typography from "material-ui/Typography";
-import Button from "material-ui/Button";
 
 import { gql } from "apollo-boost";
 import { Query } from "react-apollo";
+
+import Form from "./form";
 
 const GET_CHALLENGE = gql`
   query GetChallenge($id: ID!) {
@@ -54,32 +55,7 @@ class Submission extends PureComponent {
                 Submit for <strong>{challenge.name}</strong>
               </Typography>
 
-              <form className={classes.container} noValidate autoComplete="off">
-                <input
-                  accept="image/*"
-                  className={classes.input}
-                  id="raised-button-file"
-                  multiple
-                  type="file"
-                />
-                <label htmlFor="raised-button-file">
-                  <Button
-                    variant="raised"
-                    component="span"
-                    className={classes.button}
-                  >
-                    Upload solution
-                  </Button>
-                </label>
-
-                <Button
-                  variant="raised"
-                  color="primary"
-                  className={classes.button}
-                >
-                  Send
-                </Button>
-              </form>
+              <Form id={this.props.match.params.id} classes={classes} />
             </div>
           );
         }}

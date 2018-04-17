@@ -19,3 +19,6 @@ class Submission(TimeStampedModel):
         on_delete=models.PROTECT
     )
     challenge = models.ForeignKey(Challenge, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f'Submission on {self.challenge} by {self.submitted_by}'
