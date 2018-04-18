@@ -5,13 +5,10 @@ services:
     depends_on:
       - postgres
     ports:
-      - 8000:8000
+      - 8000
     environment:
-      SECRET_KEY: 123
-      DEBUG: 'True'
       DATABASE_URL: postgres://pyconmlsite@postgres/pyconml
 
-    command: "python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./backend:/app
 
@@ -31,7 +28,7 @@ services:
     volumes:
       - frontend-build:/app/build
     ports:
-      - 8888:80
+      - 80:80
     depends_on:
       - backend
 
