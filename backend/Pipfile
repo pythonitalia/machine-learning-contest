@@ -12,6 +12,7 @@ django-environ = "*"
 graphene = "*"
 graphene-django = "*"
 django-model-utils = "*"
+"psycopg2" = "*"
 
 
 [dev-packages]
