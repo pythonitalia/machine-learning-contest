@@ -23,15 +23,18 @@ services:
 
   frontend:
     build: frontend
-    ports:
-      - 3000:3000
     volumes:
-      - ./frontend/src:/app/src
-      - ./frontend/public:/app/public
+      - frontend-build:/app/build
 
   nginx:
     build: nginx
+    volumes:
+      - frontend-build:/app/build
     ports:
       - 8888:80
     depends_on:
       - backend
+
+
+volumes:
+  frontend-build:

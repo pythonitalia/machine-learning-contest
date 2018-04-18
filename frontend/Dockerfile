@@ -11,8 +11,4 @@ WORKDIR /app
 RUN  ln -s /tmp/node_modules .
 COPY . /app/
 
-EXPOSE 3000
-
-
-ENTRYPOINT ["yarn"]
-CMD ["start"]
+RUN yarn build
