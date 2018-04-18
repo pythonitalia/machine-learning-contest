@@ -29,3 +29,9 @@ services:
       - ./frontend/src:/app/src
       - ./frontend/public:/app/public
 
+  nginx:
+    build: nginx
+    ports:
+      - 8888:80
+    depends_on:
+      - backend
