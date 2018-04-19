@@ -32,6 +32,10 @@ const styles = {
   },
   list: {
     width: 250
+  },
+  link: {
+    textDecoration: "none",
+    color: "inherit"
   }
 };
 
@@ -65,7 +69,9 @@ class Header extends React.Component {
               color="inherit"
               className={classes.flex}
             >
-              <Link to="/">PyCon Nove</Link>
+              <Link to="/" className={classes.link}>
+                PyCon Nove
+              </Link>
             </Typography>
 
             <IsAuthenticated>

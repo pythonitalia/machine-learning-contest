@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.42",
     "apollo-boost": "^0.1.4",
     "graphql": "^0.13.2",
     "idx": "^2.2.0",
