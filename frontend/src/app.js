@@ -20,7 +20,11 @@ import ProfilePage from "./pages/profile";
 import { client } from "./client";
 import { PrivateRoute } from "./components/private-route";
 
-const theme = createMuiTheme();
+const theme = createMuiTheme({
+  typography: {
+    fontSize: 15
+  }
+});
 
 const App = () => (
   <ApolloProvider client={client}>

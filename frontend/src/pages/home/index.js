@@ -25,7 +25,9 @@ class Home extends PureComponent {
 
         <Typography variant="body1" paragraph>
           The challenge "AI FOR Precision Medicine" has been created by{" "}
-          <strong>GenomeUp</strong>.
+          <a href="https://www.genomeup.com/">
+            <strong>GenomeUp</strong>
+          </a>.
         </Typography>
 
         <Typography variant="body1" paragraph>
@@ -56,6 +58,20 @@ class Home extends PureComponent {
               <ListItemText
                 primary="variants_year.db"
                 secondary="A SQLite database with additional information for each record"
+              />
+            </ListItem>
+
+            <ListItem
+              component="a"
+              href={`${process.env.PUBLIC_URL}/data/description.txt`}
+            >
+              <Avatar>
+                <FileDownloadIcon />
+              </Avatar>
+
+              <ListItemText
+                primary="description.txt"
+                secondary="Description of all the fields of the csv"
               />
             </ListItem>
           </List>

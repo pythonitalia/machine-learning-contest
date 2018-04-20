@@ -1,0 +1,175 @@
+The “variants” fields file informations.
+
+chrom
+The chromosome on which the variant resides.
+
+start
+Physical position on the chromosome of the variant
+
+ref
+Reference allele.
+
+alt
+Alternate allele for the variant
+
+gene
+Corresponding gene name of the highly affected transcript.
+
+Aminoacid
+The changing of aminoacid.
+
+Condition(s)
+The phenotype caused from the aminoacid changing.
+
+Clinical significance
+The global impact of the variant. 
+
+
+
+The “variants_anno.db” fields file informations.
+
+chrom
+The chromosome on which the variant resides.
+
+start
+Physical position on the chromosome of the variant
+
+end
+The 1-based end position of the variant. 
+
+ref
+Reference allele.
+
+alt
+Alternate allele for the variant
+
+qual
+Quality score for the assertion made in ALT
+
+filter
+A string of filters passed/failed in variant calling
+
+type
+The type of variant  [snp, indel].
+
+sub_type
+The variant sub-type. If type is snp: [ts, (transition), tv (transversion)]. If type is indel: [ins, (insertion), del (deletion)].
+
+aaf
+The observed allele frequency for the alternate allele
+
+hwe
+The Chi-square probability of deviation from HWE (assumes random mating).
+
+inbreeding_coeff
+The inbreeding co-efficient that expresses the likelihood of effects due to inbreeding.
+
+pi
+The computed nucleotide diversity (pi) for the site.
+
+is_exonic 
+Does the variant affect an exon for >= 1 transcript?
+
+is_coding
+Does the variant fall in a coding region (excl. 3’ & 5’ UTRs) for >= 1 transcript?
+
+is_lof 
+Based on the value of the impact col, is the variant LOF for >= transcript?
+
+is_splicing
+Does the variant affect a canonical or possible splice site? That is, set to TRUE if the SO term is any of splice_acceptor_variant, splice_donor_variant, or splice_region_variant.
+
+codon_change
+What is the codon change?
+
+impact
+The consequence of the most severely affected transcript
+
+impact_so
+The Sequence ontology term for the most severe consequence
+
+impact_severity 
+Severity of the highest order observed for the variant
+
+anc_allele
+Ancestral allele (based on 1000 genomes reference data)
+
+rms_bq 
+The RMS base quality at this position.
+
+rms_map_qual
+RMS mapping quality, a measure of variance of quality scores
+
+in_dbsnp
+Absence (0) or presence (1) of the variant in dbsnp
+
+rs_ids
+A comma-separated list of rs ids for variants present in dbSNP
+
+in_hm2
+Whether the variant was part of HapMap2.
+
+in_hm3
+Whether the variant was part of HapMap3.
+
+in_esp
+Presence/absence of the variant in the ESP project data.
+
+n_1kg
+Presence/absence of the variant in the 1000 genome project data (phase 3).
+
+max_aaf_all
+The maximum of aaf_gnomad{afr,amr,eas,nfe,sas},aaf_esp_ea, aaf_esp_aa, aaf_1kg_amr, aaf_1kg_eas,aaf_1kg_sas,aaf_1kg_afr,aaf_1kg_eur,aaf_adj_exac_afr,aaf_adj_exac_amr,aaf_adj_exac_eas,aaf_adj_exac_nfe,aaf_adj_exac_sas. and -1 if none of those databases/populations contain the variant.
+
+in_cpg_island
+Does the variant overlap a CpG island?. Based on UCSC: Regulation > CpG Islands > cpgIslandExt
+
+in_segdup
+Does the variant overlap a segmental duplication?. Based on UCSC: Variation&Repeats > Segmental Dups > genomicSuperDups track
+
+is_conserved
+Does the variant overlap a conserved region? Based on the 29-way mammalian conservation study.
+
+gerp_bp_score
+GERP conservation score. Higher scores reflect greater conservation. At base-pair resolution.
+
+gerp_element_pval
+GERP elements P-val. Lower P-values scores reflect greater conservation. Not at base-pair resolution.
+
+recomb_rate
+Returns the mean recombination rate at the variant site. Based on HapMapII_GRCh37 genetic map.
+
+cadd_raw
+Raw CADD scores for scoring deleteriousness of SNV’s in the human genome
+
+cadd_scaled
+Scaled CADD scores (Phred like) for scoring deleteriousness of SNV’s
+
+fitcons
+fitCons scores estimating the probability that a point mutation at each position in a genome will influence fitness. Higher scores have more potential for interesting genomic function. Common ranges: 0.05-0.35 for non-coding and 0.4-0.8 for coding.
+
+encode_consensus_gm12878
+ENCODE consensus segmentation prediction for GM12878. CTCF: CTCF-enriched element; E: Predicted enhancer; PF: Predicted promoter flanking region; R: Predicted repressed or low-activity region; TSS: Predicted promoter region including TSS; T: Predicted transcribed region; WE: Predicted weak enhancer or open chromatin cis-regulatory element | unknown: This region of the genome had no functional prediction.
+
+encode_consensus_h1hesc
+ENCODE consensus segmentation prediction for h1HESC.
+
+encode_consensus_helas3
+ENCODE consensus segmentation prediction for Helas3.
+
+encode_consensus_hepg2
+ENCODE consensus segmentation prediction for HEPG2.
+
+encode_consensus_huvec
+ENCODE consensus segmentation prediction for HuVEC.
+
+encode_consensus_k562
+ENCODE consensus segmentation prediction for k562.
+
+vista_enhancers
+Experimentally validated human enhancers from VISTA.
+
+vep_hgvsc
+Human Genome Variation Sequence c-syntax nomenclature.
+vep_hgvsp
+Human Genome Variation Sequence p-syntax nomenclature.

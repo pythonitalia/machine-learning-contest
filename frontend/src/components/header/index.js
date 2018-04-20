@@ -70,7 +70,7 @@ class Header extends React.Component {
               className={classes.flex}
             >
               <Link to="/" className={classes.link}>
-                PyCon Nove
+                PyData Challenge
               </Link>
             </Typography>
 
