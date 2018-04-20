@@ -17,7 +17,8 @@ def test_does_not_work_when_not_logged_in(graphql_client):
     ''', variables={
         'input': {
             'challenge': challenge.pk,
-            'data': 'example data',
+            'code': 'example code',
+            'solution': 'example data',
         }
     })
 
@@ -43,7 +44,8 @@ def test_works_when_logged_in(graphql_client, user):
     ''', variables={
         'input': {
             'challenge': challenge.pk,
-            'data': 'example data',
+            'code': 'example code',
+            'solution': 'example data',
         }
     })
 

@@ -6,7 +6,7 @@ from .models import Submission
 class SubmissionForm(forms.ModelForm):
     class Meta:
         model = Submission
-        fields = ['data', 'challenge']
+        fields = ['code', 'solution', 'challenge']
 
     def save(self, user):
         submission = super().save(commit=False)

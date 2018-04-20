@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import Button from "material-ui/Button";
 import { LinearProgress } from "material-ui/Progress";
+import Chip from "material-ui/Chip";
 import idx from "idx";
 
 import gql from "graphql-tag";
@@ -18,15 +19,18 @@ const UPLOAD_SUBMISSION = gql`
 
 class SubmissionForm extends PureComponent {
   state = {
-    data: null
+    solution: null,
+    code: null
   };
 
   handleFileChange = event => {
+    const { name } = event.target;
+
     const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.onload = reader => {
-      this.setState({ data: reader.target.result });
+      this.setState({ [name]: reader.target.result });
     };
 
     reader.readAsText(file);
@@ -34,6 +38,8 @@ class SubmissionForm extends PureComponent {
 
   render() {
     const { classes } = this.props;
+
+    const hasData = this.state.code && this.state.solution;
 
     return (
       <Mutation mutation={UPLOAD_SUBMISSION}>
@@ -54,7 +60,8 @@ class SubmissionForm extends PureComponent {
                 upload({
                   variables: {
                     input: {
-                      data: this.state.data,
+                      code: this.state.code,
+                      solution: this.state.solution,
                       challenge: +this.props.id
                     }
                   }
@@ -82,28 +89,33 @@ class SubmissionForm extends PureComponent {
                   </div>
                 )}
 
-              <input
-                onChange={this.handleFileChange}
-                accept="text/plain"
-                className={classes.input}
-                id="raised-button-file"
-                type="file"
-              />
-              <label htmlFor="raised-button-file">
-                <Button
-                  variant="raised"
-                  component="span"
-                  className={classes.button}
-                >
-                  Upload solution
-                </Button>
+              <label>
+                <Chip label="Solution" />
+
+                <input
+                  name="solution"
+                  onChange={this.handleFileChange}
+                  accept="text/plain"
+                  type="file"
+                />
+              </label>
+
+              <label>
+                <Chip label="Code" />
+
+                <input
+                  name="code"
+                  onChange={this.handleFileChange}
+                  accept="text/plain"
+                  type="file"
+                />
               </label>
 
               <Button
                 variant="raised"
                 color="primary"
                 type="submit"
-                disabled={loading || !this.state.data}
+                disabled={loading || !hasData}
                 className={classes.button}
               >
                 Send

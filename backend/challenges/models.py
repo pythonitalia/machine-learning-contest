@@ -12,7 +12,8 @@ class Challenge(models.Model):
 
 
 class Submission(TimeStampedModel):
-    data = models.TextField()
+    solution = models.TextField()
+    code = models.TextField()
     score = models.CharField(max_length=10, editable=False)
     submitted_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,

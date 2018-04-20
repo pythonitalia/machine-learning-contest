@@ -5,12 +5,14 @@ from ..forms import SubmissionForm
 
 class UploadSubmissionInput(graphene.InputObjectType):
     challenge = graphene.Int(required=True)
-    data = graphene.String(required=True)
+    code = graphene.String(required=True)
+    solution = graphene.String(required=True)
 
 
 class UploadSubmissionErrors(graphene.ObjectType):
     challenge = graphene.List(graphene.NonNull(graphene.String))
-    data = graphene.List(graphene.NonNull(graphene.String))
+    code = graphene.List(graphene.NonNull(graphene.String))
+    solution = graphene.List(graphene.NonNull(graphene.String))
 
 
 class UploadSubmissionMutation(graphene.Mutation):
