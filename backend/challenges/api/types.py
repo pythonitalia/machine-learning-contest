@@ -1,6 +1,8 @@
 import graphene
 from graphene_django.types import DjangoObjectType
 
+from django.core.exceptions import ObjectDoesNotExist
+
 from ..models import Challenge, Submission
 
 
@@ -18,4 +20,11 @@ class LeaderboardSubmissionType(DjangoObjectType):
         only_fields = ('score', )
 
     def resolve_name(root, info):
-        return root.submitted_by.full_name
+        user = root.submitted_by
+
+        try:
+            return user.team.name
+        except ObjectDoesNotExist:
+            pass
+
+        return user.full_name
