@@ -8,6 +8,9 @@ services:
       - 8000
     environment:
       DATABASE_URL: postgres://pyconmlsite@postgres/pyconml
+      SECRET_KEY: ${SECRET_KEY}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS}
+      DEBUG: ${DEBUG}
 
     volumes:
       - ./backend:/app
