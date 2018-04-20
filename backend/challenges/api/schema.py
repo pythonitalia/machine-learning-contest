@@ -21,7 +21,20 @@ class ChallengeQuery():
             return None
 
     def resolve_leaderboard(self, info):
-        return Submission.objects.all()
+        all_submissions = Submission.objects.order_by('-score')
+        leaderboard = []
+
+        seen_user = set()
+
+        for submission in all_submissions:
+            user = submission.submitted_by
+
+            if user.pk not in seen_user:
+                leaderboard.append(submission)
+
+            seen_user.add(user.pk)
+
+        return leaderboard
 
 
 class ChallengeMutations():
