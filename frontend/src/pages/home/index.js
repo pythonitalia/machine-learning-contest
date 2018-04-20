@@ -24,7 +24,7 @@ class Home extends PureComponent {
         </Typography>
 
         <Typography variant="body1" paragraph>
-          The challenge "AI FOR Precision Medicine" has been created by{" "}
+          The challenge "AI for Precision Medicine" has been created by{" "}
           <a href="https://www.genomeup.com/">
             <strong>GenomeUp</strong>
           </a>.
