@@ -13,6 +13,7 @@ graphene = "*"
 graphene-django = "*"
 django-model-utils = "*"
 "psycopg2" = "*"
+uwsgi = "*"
 
 
 [dev-packages]
