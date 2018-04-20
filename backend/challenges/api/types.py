@@ -28,3 +28,8 @@ class LeaderboardSubmissionType(DjangoObjectType):
             pass
 
         return user.full_name
+
+
+class SubmissionType(DjangoObjectType):
+    class Meta:
+        model = Submission
