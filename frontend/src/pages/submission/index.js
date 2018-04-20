@@ -21,11 +21,13 @@ const styles = theme => ({
     flexWrap: "wrap",
     flexDirection: "column"
   },
+  label: {
+    width: 100,
+    margin: 10,
+    display: "inline-block"
+  },
   button: {
     margin: theme.spacing.unit
-  },
-  input: {
-    display: "none"
   }
 });
 
@@ -51,7 +53,7 @@ class Submission extends PureComponent {
 
           return (
             <div>
-              <Typography variant="display1" style={{ marginBottom: 40 }}>
+              <Typography variant="display1" gutterBottom>
                 Submit for <strong>{challenge.name}</strong>
               </Typography>
 

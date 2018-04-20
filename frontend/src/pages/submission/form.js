@@ -90,7 +90,9 @@ class SubmissionForm extends PureComponent {
                 )}
 
               <label>
-                <Chip label="Solution" />
+                <div className={classes.label}>
+                  <Chip label="Solution" />
+                </div>
 
                 <input
                   name="solution"
@@ -101,7 +103,9 @@ class SubmissionForm extends PureComponent {
               </label>
 
               <label>
-                <Chip label="Code" />
+              <div className={classes.label}>
+              <Chip label="Code" />
+                </div>
 
                 <input
                   name="code"
