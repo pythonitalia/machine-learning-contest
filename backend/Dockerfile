@@ -16,6 +16,8 @@ RUN pipenv install --deploy --system
 # -- Install dependencies:
 COPY . /app/
 
+RUN mkdir /app/assets
+
 # # uWSGI will listen on this port
 EXPOSE 8000
 
