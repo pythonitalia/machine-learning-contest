@@ -21,20 +21,11 @@ services:
       POSTGRES_USER: pyconmlsite
       POSTGRES_DB: pyconml
 
-  frontend:
-    build: frontend
-    volumes:
-      - frontend-build:/app/build
-
   nginx:
     build: nginx
     volumes:
-      - frontend-build:/app/build
+      - ./frontend/build:/app/build
     ports:
-      - 80:80
+      - 8888:80
     depends_on:
       - backend
-
-
-volumes:
-  frontend-build:
