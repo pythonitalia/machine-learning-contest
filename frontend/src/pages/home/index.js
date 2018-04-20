@@ -151,18 +151,14 @@ class Home extends PureComponent {
 
         <Typography variant="body1" paragraph>
           The solution is expected to be a textual file formatted as follows:
+          <pre>CHROM;START;REF;ALT;{"{PREDICTED CLINICAL SIGNIFICANCE}"}</pre>
+          where {"{PREDICTED CLINICAL SIGNIFICANCE}"} is one of 0,1,3,5 from the
+          list above
           <pre>
-            CHROM;START;REF;ALT{"{TAB}"}
-            {"{PREDICTED CLINICAL SIGNIFICANCE}"}
-          </pre>
-          where {"{TAB}"} is a tab character and{" "}
-          {"{PREDICTED CLINICAL SIGNIFICANCE}"} is one of 0,1,3,5 from the list
-          above
-          <pre>
-            {`chr22;49910903;G;A\t5
-chr9;37781507;T;C\t5
-chr7;21590585;C;G\t0
-chr21;46134692;G;A\t1`}
+            {`chr22;49910903;G;A;5
+chr9;37781507;T;C;5
+chr7;21590585;C;G;0
+chr21;46134692;G;A;1`}
           </pre>
         </Typography>
 
