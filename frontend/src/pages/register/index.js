@@ -62,7 +62,7 @@ class Registration extends PureComponent {
 
     return (
       <div>
-        <Typography variant="display1" style={{ marginBottom: 40 }}>
+        <Typography variant="display1" gutterBottom>
           Register
         </Typography>
 
@@ -72,7 +72,7 @@ class Registration extends PureComponent {
             const ok = idx(data, _ => _.register.ok);
 
             if (ok) {
-              this.props.history.push("/profile");
+              window.location = "/profile";
             }
           }}
           variables={{ input: this.state }}

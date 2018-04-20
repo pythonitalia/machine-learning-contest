@@ -3,7 +3,6 @@ import { withStyles } from "material-ui/styles";
 import Button from "material-ui/Button";
 import { LinearProgress } from "material-ui/Progress";
 import TextField from "material-ui/TextField";
-import { Redirect } from "react-router";
 import idx from "idx";
 
 import gql from "graphql-tag";

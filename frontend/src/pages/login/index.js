@@ -3,6 +3,8 @@ import { withStyles } from "material-ui/styles";
 import Typography from "material-ui/Typography";
 import LoginForm from "./form";
 
+import { Link } from "react-router-dom";
+
 const styles = theme => ({});
 
 class Login extends PureComponent {
@@ -17,8 +19,12 @@ class Login extends PureComponent {
   render() {
     return (
       <div>
-        <Typography variant="display1" style={{ marginBottom: 40 }}>
+        <Typography variant="display1" gutterBottom>
           Login
+        </Typography>
+
+        <Typography variant="body1" gutterBottom>
+          Not registered? <Link to="/register">Register here</Link>
         </Typography>
 
         <LoginForm />
