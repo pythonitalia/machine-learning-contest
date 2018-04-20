@@ -56,7 +56,7 @@ class LoginForm extends PureComponent {
           const errors = idx(data, _ => _.login.errors.nonFieldErrors);
 
           if (called && data && data.login.ok) {
-            return <Redirect to="/profile" />;
+            window.location = "/profile";
           }
 
           return (

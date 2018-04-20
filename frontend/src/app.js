@@ -37,7 +37,11 @@ const App = () => (
               <Route exact path="/" component={HomePage} />
               <Route exact path="/register" component={RegisterPage} />
               <Route exact path="/login" component={LoginPage} />
-              <Route exact path="/challenge/:id/submit" component={SubmissionPage} />
+              <PrivateRoute
+                exact
+                path="/challenge/:id/submit"
+                component={SubmissionPage}
+              />
               <Route exact path="/leaderboard" component={LeaderboardPage} />
               <PrivateRoute exact path="/profile" component={ProfilePage} />
               <Route component={() => <h1>Not Found</h1>} />

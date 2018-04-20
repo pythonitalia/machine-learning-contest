@@ -9,9 +9,11 @@ export class PrivateRoute extends React.Component {
   };
 
   componentDidMount() {
+    console.log("did mount");
+
     isAuthenticated().then(authenticated =>
       this.setState({
-        isAuthenticated: authenticated
+        isAuthenticated: !!authenticated
       })
     );
   }
