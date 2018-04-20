@@ -26,4 +26,4 @@ ENV UWSGI_WSGI_FILE=pycon_ml/wsgi.py UWSGI_HTTP=:8000 UWSGI_MASTER=1 UWSGI_WORKE
 ENV UWSGI_THREADS=10 UWSGI_UID=1000 UWSGI_GID=2000 UWSGI_LAZY_APPS=1 UWSGI_WSGI_ENV_BEHAVIOR=holy
 
 # # Start uWSGI
-CMD ["uwsgi", "--http-auto-chunked", "--http-keepalive", "--static-map", "/admin-static=/app/assets"]
+CMD ["uwsgi", "--http-auto-chunked", "--http-keepalive", "--static-map", "/static=/app/static"]
