@@ -1,2 +1,4 @@
 .vscode/
 .DS_Store
+score_calculator.py
+ground_truth.csv

@@ -13,6 +13,9 @@ const UPLOAD_SUBMISSION = gql`
     uploadSubmission(input: $input) {
       ok
       result
+      errors {
+        solution
+      }
     }
   }
 `;
@@ -43,11 +46,12 @@ class SubmissionForm extends PureComponent {
 
     return (
       <Mutation mutation={UPLOAD_SUBMISSION}>
-        {(upload, { data, loading, called }) => {
-          const errors = idx(
+        {(upload, { data, errors, loading, called }) => {
+          const solutionErrors = idx(
             data,
-            _ => _.uploadSubmission.errors.nonFieldErrors
+            _ => _.uploadSubmission.errors.solution
           );
+          const ok = idx(data, _ => _.uploadSubmission.ok);
 
           return (
             <form
@@ -68,8 +72,9 @@ class SubmissionForm extends PureComponent {
                 });
               }}
             >
-              {errors && (
-                <FormHelperText error>{errors.join(" ")}</FormHelperText>
+              {errors && <FormHelperText error>{errors}</FormHelperText>}
+              {solutionErrors && (
+                <FormHelperText error>{solutionErrors.join(" ")}</FormHelperText>
               )}
 
               {loading && <LinearProgress />}
@@ -77,15 +82,16 @@ class SubmissionForm extends PureComponent {
               {!loading &&
                 called && (
                   <div>
-                    {data.uploadSubmission.ok ? (
+                    {ok ? (
                       <h1>Upload successful</h1>
                     ) : (
                       <h1>Upload unsuccessful</h1>
                     )}
 
-                    {data.uploadSubmission.result && (
-                      <p>Your result is {data.uploadSubmission.result}</p>
-                    )}
+                    {data &&
+                      data.uploadSubmission.result && (
+                        <p>Your result is {data.uploadSubmission.result}</p>
+                      )}
                   </div>
                 )}
 
@@ -103,8 +109,8 @@ class SubmissionForm extends PureComponent {
               </label>
 
               <label>
-              <div className={classes.label}>
-              <Chip label="Code" />
+                <div className={classes.label}>
+                  <Chip label="Code" />
                 </div>
 
                 <input

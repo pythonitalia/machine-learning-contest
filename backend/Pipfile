@@ -14,6 +14,9 @@ graphene-django = "*"
 django-model-utils = "*"
 "psycopg2" = "*"
 uwsgi = "*"
+pandas = "*"
+sklearn = "*"
+scipy = "*"
 
 
 [dev-packages]
