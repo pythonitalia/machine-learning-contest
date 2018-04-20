@@ -82,14 +82,29 @@ class Home extends PureComponent {
         </Typography>
 
         <Typography variant="body1" paragraph>
-          The objective of the challenge is to compile the 4000 empty fields of
-          the "Clinical significance" of the file <strong>variants.csv</strong>.
-          <br />
-          Each row is identified by one of the following string: "CHROM",
-          "START", "REF", "ALT"
+          The objective of the challenge is to complete the data for the
+          "Clinical significance" for the entries missing from the file{" "}
+          <strong>variants.csv</strong>.
           <br />
           The “Clinical significance” field conveys the degree of harmfulness of
           the corresponding mutation.
+          <br />
+          Each row is uniquely identified by one of the following four field
+          information: "CHROM", "START", "REF", "ALT".
+          <br />
+          The values of the Clinical significance can be one of the following:
+          <ol start="0">
+            <li>Benign</li>
+            <li>Likely-Benign</li>
+            <li>Benign / Likely-Benign</li>
+            <li>Likely-Pathogenic</li>
+            <li>Likely-Pathogenic / Pathogenic</li>
+            <li>Pathogenic</li>
+            <li>Other</li>
+          </ol>
+          The <strong>only</strong> classes of interest for the challenge are
+          the following:{" "}
+          <strong>Benign, Likely-Benign, Likely-Pathogenic, Pathogenic</strong>.
         </Typography>
 
         <Typography variant="display1" color="primary" gutterBottom>
@@ -111,11 +126,8 @@ class Home extends PureComponent {
           </Step>
           <Step>
             <StepLabel>
-              Create a MongoDB database with the associated information
+              A multicore solution will be considered a plus
             </StepLabel>
-          </Step>
-          <Step>
-            <StepLabel>Make it work in a multicore environment</StepLabel>
           </Step>
         </Stepper>
 
@@ -127,10 +139,32 @@ class Home extends PureComponent {
           <Step>
             <StepLabel>
               Create a machine learning algorithm that will be able to find the
-              degree of harmfulness of the genetic mutations
+              degree of harmfulness of the genetic mutations considering the
+              data matched in phase one
             </StepLabel>
           </Step>
         </Stepper>
+
+        <Typography variant="headline" color="secondary">
+          Output format
+        </Typography>
+
+        <Typography variant="body1" paragraph>
+          The solution is expected to be a textual file formatted as follows:
+          <pre>
+            CHROM;START;REF;ALT{"{TAB}"}
+            {"{PREDICTED CLINICAL SIGNIFICANCE}"}
+          </pre>
+          where {"{TAB}"} is a tab character and{" "}
+          {"{PREDICTED CLINICAL SIGNIFICANCE}"} is one of 0,1,3,5 from the list
+          above
+          <pre>
+            {`chr22;49910903;G;A\t5
+chr9;37781507;T;C\t5
+chr7;21590585;C;G\t0
+chr21;46134692;G;A\t1`}
+          </pre>
+        </Typography>
 
         <Typography variant="headline" color="secondary">
           Solution
@@ -159,8 +193,8 @@ class Home extends PureComponent {
         </Typography>
 
         <Typography variant="body1" paragraph>
-          The winner will be judged based on the accuracy of their machine
-          learning algorithm
+          The winner will be judged based on the accuracy of the machine
+          learning model
         </Typography>
       </div>
     );
