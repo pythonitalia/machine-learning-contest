@@ -103,7 +103,6 @@ class SubmissionForm extends PureComponent {
                 <input
                   name="solution"
                   onChange={this.handleFileChange}
-                  accept="text/plain"
                   type="file"
                 />
               </label>
@@ -116,7 +115,6 @@ class SubmissionForm extends PureComponent {
                 <input
                   name="code"
                   onChange={this.handleFileChange}
-                  accept="text/plain"
                   type="file"
                 />
               </label>
