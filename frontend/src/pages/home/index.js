@@ -183,7 +183,10 @@ chr21;46134692;G;A;1`}
         >
           Upload solutions
         </Button>
-
+        <Typography variant="body1" paragraph>
+          <strong>NOTE:</strong> solutions without code won't qualify for the
+          prizes.
+        </Typography>
         <Typography variant="headline" color="secondary">
           Scoring
         </Typography>
