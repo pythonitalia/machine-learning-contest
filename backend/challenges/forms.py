@@ -31,6 +31,8 @@ class SubmissionForm(forms.ModelForm):
         except Exception as error:
             raise forms.ValidationError(error)
 
+        return self.cleaned_data['solution']
+
     def save(self, user):
         submission = super().save(commit=False)
         submission.submitted_by = user
